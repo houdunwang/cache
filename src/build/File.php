@@ -61,16 +61,13 @@ class File implements InterfaceCache {
 		if ( ! is_file( $file ) || ! is_readable( $file ) ) {
 			return null;
 		}
-
 		$content = file_get_contents( $file );
-
-		$expire = intval( substr( $content, 8, 10 ) );
-
+		$expire  = intval( substr( $content, 8, 10 ) );
 		//修改时间
 		$mtime = filemtime( $file );
 
 		//缓存失效处理
-		if ( $expire > 0 && $mtime + $expire < NOW ) {
+		if ( $expire > 0 && $mtime + $expire < time() ) {
 			@unlink( $file );
 
 			return false;

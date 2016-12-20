@@ -16,7 +16,7 @@ composer require houdunwang/cache
 
 ####创建对象
 ```
-$obj = new \houdunwang\mail\Cache();
+$obj = new \houdunwang\cache\Cache();
 ```
 ####配置参数
 ```
@@ -78,35 +78,35 @@ c( 'cache', $config );
 ####设置
 
 ```
-Cache::set('data',['name'=>'houdunwang.com'],3600);
+$obj->set('data',['name'=>'houdunwang.com'],3600);
 //缓存数据3600秒
 ```
 
 ####获取
 ```
-Cache::get('data');
+$obj->get('data');
 ```
 
 ####删除
 ```
-Cache::del('data');
+$obj->del('data');
 ```
 
 ####清空
 ```
-Cache::flush();
+$obj->flush();
 ```
 
 ####驱动
 系统支持项目中临时使用其他驱动类型的缓存
 ```
-Cache::driver('file')->set('name','后盾网');
+$obj->driver('file')->set('name','后盾网');
 ```
 
 ####目录
 设置缓存目录只对文件类型的缓存驱动有效
 ```
-Cache::dir('storage/cache/view')->set('name','后盾网');
+$obj->dir('storage/cache/view')->set('name','后盾网');
 ```
 
 #文件缓存

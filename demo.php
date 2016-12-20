@@ -7,7 +7,7 @@ $config = [
 	 * memcache、redis需要自行安装服务器软件
 	 * mysql缓存需要创建数据表
 	 */
-	'driver'   => 'mysql',
+	'driver'   => 'file',
 	/**
 	 * 文件缓存
 	 */
@@ -54,4 +54,5 @@ $config = [
 ];
 c( 'cache', $config );
 $obj = new \houdunwang\cache\Cache();
-$obj->driver( 'mysql' )->set( 'a', 33 );
+$obj->set( 'name', '后盾人' );
+print_r($obj->get('name'));

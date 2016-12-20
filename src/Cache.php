@@ -35,10 +35,11 @@ class Cache {
 	}
 
 	public function __call( $method, $params ) {
+		if ( is_null( $this->link ) ) {
+			$this->driver();
+		}
 		if ( method_exists( $this->link, $method ) ) {
 			return call_user_func_array( [ $this->link, $method ], $params );
-		} else {
-			return $this;
 		}
 	}
 }
