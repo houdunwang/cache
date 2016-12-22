@@ -4,3 +4,4 @@
 composer.lock
 /attachment
 /storage
+storage/
