@@ -28,7 +28,7 @@ class CacheProvider extends ServiceProvider {
 
 	public function register() {
 		$this->app->bind( 'Cache', function ( $app ) {
-			return ( new Cache( $app ) )->driver( c( 'cache.driver' ) );
+			return ( new Cache( $app ) );
 		} );
 	}
 }

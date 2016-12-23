@@ -8,7 +8,7 @@ $config = [
 	 * mysql缓存需要创建数据表
 	 */
 	'driver'   => 'file',
-	/**
+	/**\
 	 * 文件缓存
 	 */
 	'file'     => [
@@ -52,7 +52,6 @@ $config = [
 		'table'    => 'core_cache'
 	]
 ];
-c( 'cache', $config );
-$obj = new \houdunwang\cache\Cache();
-$obj->set( 'name', '后盾人' );
-print_r($obj->get('name'));
+
+\houdunwang\config\Config::set( 'cache', $config );
+\houdunwang\cache\Cache::dir('astorage/cache/view')->set('name','后盾网');

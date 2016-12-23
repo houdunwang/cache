@@ -78,35 +78,35 @@ c( 'cache', $config );
 ####设置
 
 ```
-$obj->set('data',['name'=>'houdunwang.com'],3600);
+\houdunwang\config\Config::set('data',['name'=>'houdunwang.com'],3600);
 //缓存数据3600秒
 ```
 
 ####获取
 ```
-$obj->get('data');
+\houdunwang\cache\Cache::get('data');
 ```
 
 ####删除
 ```
-$obj->del('data');
+\houdunwang\cache\Cache::del('data');
 ```
 
 ####清空
 ```
-$obj->flush();
+\houdunwang\cache\Cache::flush();
 ```
 
 ####驱动
 系统支持项目中临时使用其他驱动类型的缓存
 ```
-$obj->driver('file')->set('name','后盾网');
+\houdunwang\cache\Cache::driver('file')->set('name','后盾网');
 ```
 
 ####目录
 设置缓存目录只对文件类型的缓存驱动有效
 ```
-$obj->dir('storage/cache/view')->set('name','后盾网');
+Cache::dir('storage/cache/view')->set('name','后盾网');
 ```
 
 #文件缓存
@@ -154,8 +154,6 @@ f(null);
 ```
 f('hd','[del]',3600,'storage/cache/field');
 ```
-
-
 
 ##数据库缓存
 针对数据库缓存操作系统提供了快捷的 d 函数操作。
