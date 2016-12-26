@@ -12,10 +12,8 @@ if ( ! function_exists( 'f' ) ) {
 	function f( $name, $value = '[get]', $expire = 0, $path = '' ) {
 		static $instance = null;
 		if ( is_null( $instance ) ) {
-			$instance = new \houdunwang\cache\Cache();
-			$instance->driver( 'file' );
+			$instance = \houdunwang\cache\Cache::driver( 'file' );
 		}
-
 		$path     = $path ?: \houdunwang\config\Config::get( 'cache.file.dir' );
 		$instance = $instance->dir( $path );
 		if ( is_null( $name ) ) {
@@ -47,8 +45,7 @@ if ( ! function_exists( 'd' ) ) {
 	function d( $name, $value = '[get]', $expire = 0 ) {
 		static $instance = null;
 		if ( is_null( $instance ) ) {
-			$instance = new \houdunwang\cache\Cache();
-			$instance->driver( 'mysql' );
+			$instance = \houdunwang\cache\Cache::driver( 'mysql' );
 		}
 		switch ( $value ) {
 			case '[get]':

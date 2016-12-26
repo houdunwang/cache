@@ -14,10 +14,6 @@ composer require houdunwang/cache
 ```
 > HDPHP 框架已经内置此组件，无需要安装
 
-####创建对象
-```
-$obj = new \houdunwang\cache\Cache();
-```
 ####配置参数
 ```
 $config = [
@@ -56,21 +52,11 @@ $config = [
 	 * mysql缓存
 	 */
 	'mysql'    => [
-		//缓存表字段
-		'debug'     => true,
-		//主机
-		'host'     => 'localhost',
-		//帐号
-		'user'     => 'root',
-		//密码
-		'password' => 'admin888',
-		//数据库
-		'database' => '',
 		//缓存表
 		'table'    => 'core_cache'
 	]
 ];
-c( 'cache', $config );
+\houdunwang\config\Config::set('cache',$config);
 ```
 
 ## 基本操作
@@ -100,7 +86,7 @@ c( 'cache', $config );
 ####驱动
 系统支持项目中临时使用其他驱动类型的缓存
 ```
-\houdunwang\cache\Cache::driver('file')->set('name','后盾网');
+Cache::driver('file')->set('name','后盾网');
 ```
 
 ####目录
@@ -158,6 +144,7 @@ f('hd','[del]',3600,'storage/cache/field');
 ##数据库缓存
 针对数据库缓存操作系统提供了快捷的 d 函数操作。
 
+数据库缓存依赖 [Db数据库组件](https://github.com/houdunwang/db)
 ####创建表
 请执行以下SQL创建缓存表
 ```
@@ -171,6 +158,9 @@ CREATE TABLE `core_cache` (
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 ```
+
+####设置数据库连接配置
+数据库连接配置请参考 [GitHub文档](https://github.com/houdunwang/db) 。
 
 ####添加
 ```
