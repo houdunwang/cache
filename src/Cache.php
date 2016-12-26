@@ -40,7 +40,7 @@ class Cache {
 	}
 
 	//更改缓存驱动
-	public function driver( $driver = null ) {
+	protected function driver( $driver = null ) {
 		$driver     = $driver ?: $this->config( 'driver' );
 		$driver     = '\houdunwang\cache\\build\\' . ucfirst( $driver );
 		$this->link = new $driver( $this );
