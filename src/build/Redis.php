@@ -24,7 +24,7 @@ class Redis implements InterfaceCache {
 
 	//连接
 	public function connect() {
-		$conf       = Config::get( 'cache.redis' );
+		$conf       = $this->facade->config( 'redis' );
 		$this->link = new Redis();
 		if ( $this->link->connect( $conf['host'], $conf['port'] ) ) {
 			throw new Exception( "Redis 连接失败" );

@@ -26,7 +26,7 @@ class File implements InterfaceCache {
 
 	//连接
 	public function connect() {
-		$this->dir( $this->base->config( 'file.dir' ) );
+		$this->dir( $this->facade->config( 'file.dir' ) );
 	}
 
 	//设置缓存目录

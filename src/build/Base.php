@@ -7,11 +7,11 @@
  */
 trait Base {
 	protected $cache = [ ];
-	//基础类
-	protected $base;
+	//外观类
+	protected $facade;
 
-	public function __construct( $base ) {
-		$this->base = $base;
+	public function __construct( $facade ) {
+		$this->facade = $facade;
 		$this->connect();
 	}
 }

@@ -38,20 +38,10 @@ $config = [
 	 * php hd table:cache
 	 */
 	'mysql'    => [
-		//主机
-		'host'     => 'localhost',
-		//类型
-		'driver'   => 'mysql',
-		//帐号
-		'user'     => 'root',
-		//密码
-		'password' => 'admin888',
-		//数据库
-		'database' => 'demo',
 		//缓存表
-		'table'    => 'core_cache'
+		'table' => 'core_cache'
 	]
 ];
 
 \houdunwang\config\Config::set( 'cache', $config );
-\houdunwang\cache\Cache::dir('storage/cache/view')->set('name','后盾网');
+\houdunwang\cache\Cache::dir( 'storage/cache/view' )->set( 'name', '后盾网' );
