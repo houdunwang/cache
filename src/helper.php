@@ -9,7 +9,7 @@
  * @return bool
  */
 if ( ! function_exists( 'f' ) ) {
-	function f( $name, $value = '[get]', $expire = 0, $path = '' ) {
+	function f( $name, $value = '[get]', $expire = 3600, $path = '' ) {
 		static $instance = null;
 		if ( is_null( $instance ) ) {
 			$instance = \houdunwang\cache\Cache::driver( 'file' );
