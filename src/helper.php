@@ -15,7 +15,8 @@ if ( ! function_exists( 'f' ) ) {
 			$instance = new \houdunwang\cache\Cache();
 			$instance->driver( 'file' );
 		}
-		$path     = $path ?: c( 'cache.file.dir' );
+
+		$path     = $path ?: \houdunwang\config\Config::get( 'cache.file.dir' );
 		$instance = $instance->dir( $path );
 		if ( is_null( $name ) ) {
 			//删除所有缓存

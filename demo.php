@@ -54,4 +54,4 @@ $config = [
 ];
 
 \houdunwang\config\Config::set( 'cache', $config );
-\houdunwang\cache\Cache::dir('astorage/cache/view')->set('name','后盾网');
+\houdunwang\cache\Cache::dir('storage/cache/view')->set('name','后盾网');

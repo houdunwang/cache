@@ -9,6 +9,9 @@
  * '-------------------------------------------------------------------*/
 namespace houdunwang\cache;
 
+use houdunwang\arr\Arr;
+use houdunwang\config\Config;
+
 /**
  * 缓存处理基类
  * Class Cache
@@ -18,25 +21,31 @@ namespace houdunwang\cache;
  */
 class Cache {
 	//连接
-	protected $link;
+	protected $link = null;
+	protected $config;
 
 	public function __construct() {
+		$this->config( Config::get( 'cache' ) );
+	}
+
+	//设置配置项
+	public function config( $name ) {
+		if ( is_array( $name ) ) {
+			$this->config = $name;
+
+			return $this;
+		} else {
+			return Arr::get( $this->config, $name );
+		}
 	}
 
 	//更改缓存驱动
-	public static function driver( $driver = null ) {
-		$driver = $driver ?: c( 'cache.driver' );
-		$driver = '\houdunwang\cache\\build\\' . ucfirst( $driver );
-		static $links = [ ];
-		if ( ! isset( $links[ $driver ] ) ) {
-			$obj       = new Cache();
-			$obj->link = new $driver;
-			$obj->link->connect();
+	public function driver( $driver = null ) {
+		$driver     = $driver ?: $this->config( 'driver' );
+		$driver     = '\houdunwang\cache\\build\\' . ucfirst( $driver );
+		$this->link = new $driver( $this );
 
-			$links[ $driver ] = $obj;
-		}
-
-		return $links[ $driver ];
+		return $this;
 	}
 
 	public function __call( $method, $params ) {
@@ -49,6 +58,6 @@ class Cache {
 	}
 
 	public static function __callStatic( $name, $arguments ) {
-		return call_user_func_array( [ static::driver(), $name ], $arguments );
+		return call_user_func_array( [ new static(), $name ], $arguments );
 	}
 }

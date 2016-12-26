@@ -7,8 +7,11 @@
  */
 trait Base {
 	protected $cache = [ ];
+	//基础类
+	protected $base;
 
-	public function __construct() {
+	public function __construct( $base ) {
+		$this->base = $base;
 		$this->connect();
 	}
 }

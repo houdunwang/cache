@@ -10,6 +10,7 @@
 namespace houdunwang\cache\build;
 
 use Exception;
+use houdunwang\dir\Dir;
 
 /**
  * 文件缓存处理
@@ -25,12 +26,12 @@ class File implements InterfaceCache {
 
 	//连接
 	public function connect() {
-		$this->dir( c( 'cache.file.dir' ) );
+		$this->dir( $this->base->config( 'file.dir' ) );
 	}
 
 	//设置缓存目录
 	public function dir( $dir ) {
-		is_dir( $dir ) or mkdir( $dir, 0755, true );
+		Dir::create( $dir );
 		$this->dir = $dir;
 		if ( ! is_dir( $dir ) or ! is_writable( $this->dir ) ) {
 			throw new Exception( "缓存目录创建失败或目录不可写" );
@@ -80,7 +81,7 @@ class File implements InterfaceCache {
 	public function del( $name ) {
 		$file = $this->getFile( $name );
 
-		return is_file( $file ) && unlink( $file );
+		return Dir::delFile( $file );
 	}
 
 	//刷新缓存池
