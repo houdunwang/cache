@@ -1,4 +1,8 @@
 <?php namespace houdunwang\cache\build;
+
+use houdunwang\arr\Arr;
+use houdunwang\config\Config;
+
 /**
  * 缓存服务基础类
  * Class Base
@@ -6,12 +10,22 @@
  * @author 向军 <2300071698@qq.com>
  */
 trait Base {
-	protected $cache = [ ];
-	//外观类
-	protected $facade;
+	//配置
+	protected $config;
 
-	public function __construct( $facade ) {
-		$this->facade = $facade;
+	public function __construct() {
+		$this->config( Config::get( 'cache' ) );
 		$this->connect();
+	}
+
+	//设置配置项
+	public function config( $name ) {
+		if ( is_array( $name ) ) {
+			$this->config = $name;
+
+			return $this;
+		} else {
+			return Arr::get( $this->config, $name );
+		}
 	}
 }

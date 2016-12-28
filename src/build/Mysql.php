@@ -23,7 +23,7 @@ class Mysql implements InterfaceCache {
 
 	//连接
 	public function connect() {
-		$this->link = Db::table( $this->facade->config( 'mysql.table' ) );
+		$this->link = Db::table( $this->config( 'mysql.table' ) );
 	}
 
 	//设置

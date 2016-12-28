@@ -24,7 +24,7 @@ class Memcache implements InterfaceCache {
 
 	//连接
 	public function connect() {
-		$conf = $this->facade->config( 'memcache' );
+		$conf = $this->config( 'memcache' );
 		if ( $this->link = new Memcache() ) {
 			$this->link->addServer( $conf['host'], $conf['port'] );
 		} else {
