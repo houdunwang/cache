@@ -8,8 +8,8 @@
  * | Copyright (c) 2012-2019, www.houdunwang.com. All Rights Reserved.
  * '-------------------------------------------------------------------*/
 namespace houdunwang\cache;
+use houdunwang\framework\build\Provider;
 
-use hdphp\kernel\ServiceProvider;
 
 /**
  * 缓存服务提供者
@@ -18,8 +18,7 @@ use hdphp\kernel\ServiceProvider;
  * @package Hdphp\Cache
  * @author  向军 <2300071698@qq.com>
  */
-class CacheProvider extends ServiceProvider {
-
+class CacheProvider extends Provider {
 	//延迟加载
 	public $defer = true;
 
@@ -27,7 +26,7 @@ class CacheProvider extends ServiceProvider {
 	}
 
 	public function register() {
-		$this->app->bind( 'Cache', function ( $app ) {
+		$this->app->bind( 'Cache', function (  ) {
 			return new Cache();
 		} );
 	}

@@ -13,11 +13,6 @@ trait Base {
 	//配置
 	protected $config;
 
-	public function __construct() {
-		$this->config( Config::get( 'cache' ) );
-		$this->connect();
-	}
-
 	//设置配置项
 	public function config( $name ) {
 		if ( is_array( $name ) ) {
@@ -27,5 +22,7 @@ trait Base {
 		} else {
 			return Arr::get( $this->config, $name );
 		}
+
+		return $this;
 	}
 }

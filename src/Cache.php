@@ -22,24 +22,14 @@ use houdunwang\config\Config;
 class Cache {
 	//连接
 	protected $link = null;
-	//配置
-	protected $config;
-
-	public function __construct() {
-		if ( ! Config::get( 'cache' ) ) {
-			$config = [
-				'driver' => 'file',
-				'file'   => [ 'dir' => 'storage/cache' ]
-			];
-			Config::set( 'cache', $config );
-		}
-	}
 
 	//更改缓存驱动
 	protected function driver( $driver = null ) {
 		$driver     = $driver ?: Config::get( 'cache.driver' );
 		$driver     = '\houdunwang\cache\\build\\' . ucfirst( $driver );
 		$this->link = new $driver();
+		$this->link->config( Config::get( 'cache' ) );
+		$this->link->connect();
 
 		return $this;
 	}
