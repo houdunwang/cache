@@ -50,7 +50,7 @@ class File implements InterfaceCache {
 		$file = $this->getFile( $name );
 		//缓存时间
 		$expire = sprintf( "%010d", $expire );
-		$data   = "<?php\n//" . $expire . serialize( $data ) . "\n?>";
+		$data   = $expire . serialize( $data );
 
 		return file_put_contents( $file, $data );
 	}
@@ -63,7 +63,7 @@ class File implements InterfaceCache {
 			return null;
 		}
 		$content = file_get_contents( $file );
-		$expire  = intval( substr( $content, 8, 10 ) );
+		$expire  = intval( substr( $content, 0, 10 ) );
 		//修改时间
 		$mtime = filemtime( $file );
 
@@ -74,7 +74,7 @@ class File implements InterfaceCache {
 			return false;
 		}
 
-		return unserialize( substr( $content, 18, - 3 ) );
+		return unserialize( substr( $content, 10) );
 	}
 
 	//删除

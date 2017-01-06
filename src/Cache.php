@@ -25,9 +25,13 @@ class Cache {
 
 	//更改缓存驱动
 	protected function driver( $driver = null ) {
-		$driver     = $driver ?: Config::get( 'cache.driver' );
-		$driver     = '\houdunwang\cache\\build\\' . ucfirst( $driver );
-		$this->link = new $driver();
+		static $cache = [ ];
+		$driver = $driver ?: Config::get( 'cache.driver' );
+		$driver = '\houdunwang\cache\\build\\' . ucfirst( $driver );
+		if ( ! isset( $cache[ $driver ] ) ) {
+			$cache[ $driver ] = new $driver();
+		}
+		$this->link = $cache[ $driver ];
 		$this->link->config( Config::get( 'cache' ) );
 		$this->link->connect();
 

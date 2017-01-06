@@ -8,6 +8,7 @@
  * | Copyright (c) 2012-2019, www.houdunwang.com. All Rights Reserved.
  * '-------------------------------------------------------------------*/
 namespace houdunwang\cache;
+
 use houdunwang\framework\build\Provider;
 
 
@@ -26,7 +27,7 @@ class CacheProvider extends Provider {
 	}
 
 	public function register() {
-		$this->app->bind( 'Cache', function (  ) {
+		$this->app->single( 'Cache', function () {
 			return new Cache();
 		} );
 	}
