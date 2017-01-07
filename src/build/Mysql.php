@@ -29,7 +29,6 @@ class Mysql implements InterfaceCache {
 	//设置
 	public function set( $name, $content, $expire = 0 ) {
 		$data = [ 'name' => $name, 'data' => serialize( $content ), 'create_at' => time(), 'expire' => $expire ];
-
 		return $this->link->replace( $data ) ? true : false;
 	}
 
