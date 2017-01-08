@@ -42,7 +42,17 @@ if ( ! function_exists( 'f' ) ) {
  * @return mixed
  */
 if ( ! function_exists( 'd' ) ) {
-	function d( $name, $value = '[get]', $expire = 0 ) {
+	/**
+	 * 数据表缓存操作函数
+	 *
+	 * @param string $name 缓存标识
+	 * @param string $value 缓存数据
+	 * @param int $expire 过期时间
+	 * @param array $field 附加字段
+	 *
+	 * @return mixed
+	 */
+	function d( $name, $value = '[get]', $expire = 0, $field = [ ] ) {
 		static $instance = null;
 		if ( is_null( $instance ) ) {
 			$instance = \houdunwang\cache\Cache::driver( 'mysql' );
@@ -58,7 +68,7 @@ if ( ! function_exists( 'd' ) ) {
 				//删除所有缓存
 				return $instance->flush( $name );
 			default:
-				return $instance->set( $name, $value, $expire );
+				return $instance->set( $name, $value, $expire, $field );
 		}
 	}
 }
