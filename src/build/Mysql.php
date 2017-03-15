@@ -9,6 +9,7 @@
  * '-------------------------------------------------------------------*/
 namespace houdunwang\cache\build;
 
+use houdunwang\config\Config;
 use houdunwang\db\Db;
 
 /**
@@ -23,7 +24,7 @@ class Mysql implements InterfaceCache {
 
 	//连接
 	public function connect() {
-		$this->link = Db::table( $this->config( 'mysql.table' ) );
+		$this->link = Db::table( Config::get( 'cache.mysql.table' ) );
 	}
 
 	//设置
@@ -56,6 +57,6 @@ class Mysql implements InterfaceCache {
 
 	//删除所有
 	public function flush() {
-		return $this->link->execut( "TRUNCATE " . $this->facade->config( 'mysql.table' ) );
+		return $this->link->execut( "TRUNCATE " . Config::get( 'cache.mysql.table' ) );
 	}
 }

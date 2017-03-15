@@ -10,6 +10,7 @@
 namespace houdunwang\cache\build;
 
 use Exception;
+use houdunwang\config\Config;
 use houdunwang\dir\Dir;
 
 /**
@@ -26,7 +27,7 @@ class File implements InterfaceCache {
 
 	//连接
 	public function connect() {
-		$this->dir( $this->config( 'file.dir' ) );
+		$this->dir( Config::get( 'cache.file.dir' ));
 	}
 
 	//设置缓存目录
@@ -74,7 +75,7 @@ class File implements InterfaceCache {
 			return false;
 		}
 
-		return unserialize( substr( $content, 10) );
+		return unserialize( substr( $content, 10 ) );
 	}
 
 	//删除

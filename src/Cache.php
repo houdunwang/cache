@@ -32,7 +32,6 @@ class Cache {
 			$cache[ $driver ] = new $driver();
 		}
 		$this->link = $cache[ $driver ];
-		$this->link->config( Config::get( 'cache' ) );
 		$this->link->connect();
 
 		return $this;

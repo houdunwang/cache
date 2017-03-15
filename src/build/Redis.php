@@ -10,6 +10,7 @@
 namespace houdunwang\cache\build;
 
 use Exception;
+use houdunwang\config\Config;
 
 /**
  * Redis缓存处理类
@@ -24,7 +25,7 @@ class Redis implements InterfaceCache {
 
 	//连接
 	public function connect() {
-		$conf       = $this->config( 'redis' );
+		$conf       = Config::get( 'cache.redis' );
 		$this->link = new Redis();
 		if ( $this->link->connect( $conf['host'], $conf['port'] ) ) {
 			throw new Exception( "Redis 连接失败" );

@@ -10,6 +10,7 @@
 namespace houdunwang\cache\build;
 
 use Exception;
+use houdunwang\config\Config;
 
 /**
  * Memcache缓存处理类
@@ -24,7 +25,7 @@ class Memcache implements InterfaceCache {
 
 	//连接
 	public function connect() {
-		$conf = $this->config( 'memcache' );
+		$conf = Config::get( 'cache.memcache' );
 		if ( $this->link = new Memcache() ) {
 			$this->link->addServer( $conf['host'], $conf['port'] );
 		} else {
