@@ -64,23 +64,23 @@ $config = [
 ####设置
 
 ```
-\houdunwang\config\Config::set('data',['name'=>'houdunwang.com'],3600);
+\houdunwang\cache\Cache::set('data',['name'=>'houdunwang.com'],3600);
 //缓存数据3600秒
 ```
 
 ####获取
 ```
-\houdunwang\cache\Cache::get('data');
+Cache::get('data');
 ```
 
 ####删除
 ```
-\houdunwang\cache\Cache::del('data');
+Cache::del('data');
 ```
 
 ####清空
 ```
-\houdunwang\cache\Cache::flush();
+Cache::flush();
 ```
 
 ####驱动
@@ -106,7 +106,6 @@ f('hd','houdunwang.com');
 ```
 
 ####获取
-
 ```
 f('hd');
 ```

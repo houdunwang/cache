@@ -7,24 +7,47 @@
  * |    WeChat: aihoudun
  * | Copyright (c) 2012-2019, www.houdunwang.com. All Rights Reserved.
  * '-------------------------------------------------------------------*/
+
 namespace houdunwang\cache\build;
 
 /**
  * 缓存处理接口
  * Interface InterfaceCache
  *
- * @package Hdphp\Cache
- * @author  向军 <2300071698@qq.com>
+ * @package houdunwang\cache\build
  */
-interface InterfaceCache {
-	//连接驱动只运行一次
-	public function connect();
+interface InterfaceCache
+{
+    /**
+     * @return mixed
+     */
+    public function connect();
 
-	public function set( $name, $value, $expire );
+    /**
+     * @param $name
+     * @param $value
+     * @param $expire
+     *
+     * @return mixed
+     */
+    public function set($name, $value, $expire);
 
-	public function get( $name );
+    /**
+     * @param $name
+     *
+     * @return mixed
+     */
+    public function get($name);
 
-	public function del( $name );
+    /**
+     * @param $name
+     *
+     * @return mixed
+     */
+    public function del($name);
 
-	public function flush();
+    /**
+     * @return mixed
+     */
+    public function flush();
 }
