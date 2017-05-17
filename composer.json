@@ -1,7 +1,6 @@
 {
   "name": "houdunwang/cache",
   "description": "缓存组件提供了多种高效的缓存处理方式，包括数据缓存、静态缓存和查询缓存等，提供多种缓存类型，并提供了快捷方法进行存取操作",
-  "type": "project",
   "keywords": [
     "houdunwang",
     "hdphp",
