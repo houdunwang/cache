@@ -7,6 +7,7 @@
  * |    WeChat: aihoudun
  * | Copyright (c) 2012-2019, www.houdunwang.com. All Rights Reserved.
  * '-------------------------------------------------------------------*/
+
 namespace houdunwang\cache;
 
 use houdunwang\framework\build\Provider;
@@ -19,16 +20,19 @@ use houdunwang\framework\build\Provider;
  * @package Hdphp\Cache
  * @author  向军 <2300071698@qq.com>
  */
-class CacheProvider extends Provider {
-	//延迟加载
-	public $defer = true;
+class CacheProvider extends Provider
+{
+    //延迟加载
+    public $defer = false;
 
-	public function boot() {
-	}
+    public function boot()
+    {
+    }
 
-	public function register() {
-		$this->app->single( 'Cache', function () {
-			return new Cache();
-		} );
-	}
+    public function register()
+    {
+        $this->app->single('Cache', function () {
+            return new Cache();
+        });
+    }
 }
