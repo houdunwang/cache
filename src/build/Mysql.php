@@ -53,9 +53,7 @@ class Mysql implements InterfaceCache
         $data = $this->link->where('name', $name)->first();
         if (empty($data)) {
             return null;
-        } else if ($data['expire'] > 0
-            && $data['create_at'] + $data['expire'] < time()
-        ) {
+        } else if ($data['expire'] > 0 && $data['create_at'] + $data['expire'] < time()) {
             //缓存过期
             $this->link->where('name', $name)->delete();
         } else {
