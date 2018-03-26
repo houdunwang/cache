@@ -36,7 +36,7 @@ class File implements InterfaceCache
     public function dir($dir)
     {
         $this->dir = $dir;
-        if (!Dir::create($this->dir)) {
+        if ( ! Dir::create($this->dir)) {
             throw new Exception("缓存目录创建失败或目录不可写");
         }
 
@@ -75,7 +75,9 @@ class File implements InterfaceCache
 
         //缓存失效处理
         if ($expire > 0 && $mtime + $expire < time()) {
-            @unlink($file);
+            if (is_file($file)) {
+                unlink($file);
+            }
 
             return false;
         }

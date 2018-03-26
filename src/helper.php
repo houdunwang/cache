@@ -59,6 +59,7 @@ if ( ! function_exists('d')) {
         if (is_null($instance)) {
             $instance = \houdunwang\cache\Cache::driver('mysql');
         }
+
         if (is_null($name)) {
             //删除所有缓存
             return $instance->flush();

@@ -28,7 +28,7 @@ class Cache
     {
         static $cache = [];
         $driver = $driver ?: Config::get('cache.driver');
-        $driver = '\houdunwang\cache\\build\\'.ucfirst($driver);
+        $driver = '\houdunwang\cache\\build\\'.ucfirst($driver ?: 'file');
         if ($driver == 'file' || ! isset($cache[$driver])) {
             $cache[$driver] = new $driver();
         }
